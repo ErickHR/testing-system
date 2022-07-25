@@ -195,6 +195,35 @@ function mostrar(idventa)
 	});	
 }
 
+function emitir(idventa)
+{
+	$.post("../ajax/venta.php?op=emitir",{idventa : idventa}, function(data, status)
+	{
+		// data = JSON.parse(data);
+		console.log( data )		
+		// mostrarform(true);
+
+		// $("#idcliente").val(data.idcliente);
+		// $("#idcliente").selectpicker('refresh');
+		// $("#tipo_comprobante").val(data.tipo_comprobante);
+		// $("#tipo_comprobante").selectpicker('refresh');
+		// $("#serie_comprobante").val(data.serie_comprobante);
+		// $("#num_comprobante").val(data.num_comprobante);
+		// $("#fecha_hora").val(data.fecha);
+		// $("#impuesto").val(data.impuesto);
+		// $("#idventa").val(data.idventa);
+
+		// //Ocultar y mostrar los botones
+		// $("#btnGuardar").hide();
+		// $("#btnCancelar").show();
+		// $("#btnAgregarArt").hide();
+ 	});
+
+//  	$.post("../ajax/venta.php?op=listarDetalle&id="+idventa,function(r){
+// 	        $("#detalles").html(r);
+// 	});	
+}
+
 //Función para anular registros
 function anular(idventa)
 {

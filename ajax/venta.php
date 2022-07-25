@@ -47,6 +47,22 @@ switch ($_GET["op"]){
  		echo json_encode($rspta);
 	break;
 
+	case 'emitir':
+		// $rspta=$venta->mostrar($idventa);
+		
+		require_once "./../PHPMAILER/Email.php";
+		// $rspta=$venta->mostrar($idventa);
+		$id = $_POST['idventa'];
+		// echo $id;
+		$rsptav=$venta->ventacabecera($id);
+		$rspta = $rsptav->fetch_object();
+ 		//Codificar el resultado utilizando json
+ 		// echo json_encode($rspta);
+		$mail = Email::sendEmail( $rspta );
+		echo $mail;
+		
+	break;
+
 	case 'listarDetalle':
 		//Recibimos el idingreso
 		$id=$_GET['id'];
@@ -89,9 +105,10 @@ switch ($_GET["op"]){
  			else{
  				$url='../reportes/exFactura.php?id=';
  			}
-
+			//  
  			$data[]=array(
  				"0"=>(($reg->estado=='Aceptado')?'<button class="btn btn-warning" onclick="mostrar('.$reg->idventa.')"><i class="fa fa-eye"></i></button>'.
+ 					' <button class="btn btn-success" onclick="emitir('.$reg->idventa.')"><i class="fa fa-envelope-o fa-fw"></i></button>'.
  					' <button class="btn btn-danger" onclick="anular('.$reg->idventa.')"><i class="fa fa-close"></i></button>':
  					'<button class="btn btn-warning" onclick="mostrar('.$reg->idventa.')"><i class="fa fa-eye"></i></button>').
  					'<a target="_blank" href="'.$url.$reg->idventa.'"> <button class="btn btn-info"><i class="fa fa-file"></i></button></a>',
