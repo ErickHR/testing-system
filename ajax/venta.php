@@ -47,7 +47,7 @@ switch ($_GET["op"]){
  		echo json_encode($rspta);
 	break;
 
-	case 'emitir':
+	case 'emitir': 
 		// $rspta=$venta->mostrar($idventa);
 		
 		require_once "./../PHPMAILER/Email.php";
@@ -58,6 +58,11 @@ switch ($_GET["op"]){
 		$rspta = $rsptav->fetch_object();
  		//Codificar el resultado utilizando json
  		// echo json_encode($rspta);
+		echo 'El usuario no tiene Email';
+		break;
+		if( $rspta->email == '' ){
+			break;
+		}
 		$mail = Email::sendEmail( $rspta );
 		echo $mail;
 		

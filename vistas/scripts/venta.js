@@ -199,8 +199,9 @@ function emitir(idventa)
 {
 	$.post("../ajax/venta.php?op=emitir",{idventa : idventa}, function(data, status)
 	{
+		bootbox.alert(data);
 		// data = JSON.parse(data);
-		console.log( data )		
+		// console.log( data )		
 		// mostrarform(true);
 
 		// $("#idcliente").val(data.idcliente);
